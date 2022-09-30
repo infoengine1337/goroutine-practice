@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/imroc/req/v3"
+	"github.com/valyala/fasthttp"
 )
 
 func main() {
@@ -23,15 +23,11 @@ func main() {
 
 			defer wg.Done()
 
-			client := req.C()
-			resp, err := client.R(). // Use R() to create a request.
-							Get("http://localhost:8000")
+			_, _, err := fasthttp.Get(nil, "http://localhost:8000")
 
 			if err != nil {
 				log.Fatal(err)
 			}
-
-			fmt.Println(resp)
 
 		}()
 
