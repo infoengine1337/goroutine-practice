@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"sync"
 	"time"
 
@@ -23,13 +22,15 @@ func main() {
 
 			defer wg.Done()
 
-			client := req.C()
-			resp, err := client.R(). // Use R() to create a request.
-							Get("http://localhost:8000")
+			//client := req.C()
+			//resp, err := client.R().
+			//				Get("http://localhost:8000")
 
-			if err != nil {
-				log.Fatal(err)
-			}
+			resp := req.MustGet("http://localhost:8000")
+
+			//if err != nil {
+			//	log.Fatal(err)
+			//}
 
 			fmt.Println(resp)
 
