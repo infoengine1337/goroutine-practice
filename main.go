@@ -23,9 +23,7 @@ func main() {
 
 			defer wg.Done()
 
-			client := req.C()
-			resp, err := client.R(). // Use R() to create a request.
-							Get("http://localhost:8000")
+			resp, err := req.Get("http://localhost:8000")
 
 			if err != nil {
 				log.Fatal(err)
